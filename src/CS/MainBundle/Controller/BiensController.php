@@ -14,7 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class BiensController extends Controller
 {
     public function listAction(){
-        return $this->render('CSMainBundle:Biens:list.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+        $list = $em->getRepository('CSMainBundle:Bien')->findAll();
+
+        return $this->render('CSMainBundle:Biens:list.html.twig', [
+            'list' => $list
+        ]);
+
 
     }
     public function voirAction($id){

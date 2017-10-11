@@ -24,6 +24,13 @@ class Locataire
     /**
      * @var string
      *
+     * @ORM\Column(name="code", type="string", length=255)
+     */
+    private $code;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;

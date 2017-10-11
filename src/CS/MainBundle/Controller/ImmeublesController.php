@@ -15,8 +15,20 @@ class ImmeublesController extends Controller
 {
     public function listAction()
     {
-        return $this->render('CSMainBundle:Immeubles:list.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $list = $em->getRepository('CSMainBundle:Immeubles')->findAll();
+
+        return $this->render('CSMainBundle:Immeubles:list.html.twig',[
+        'list' => $list
+        ]);
+
     }
+
+    public function ajouterAction()
+    {
+        return $this->render('CSMainBundle:Immeubles:ajouter.html.twig');
+    }
+
     public function editAction($id)
     {
         return $this->render('CSMainBundle:Immeubles:edit.html.twig');

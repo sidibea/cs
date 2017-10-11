@@ -32,7 +32,7 @@ cs_main_Biens_inventaires:
       defaults: { _controller:CSMainBundle:Biens:inventaires }
 
 cs_main_Biens_ajouter:
-      path:     /Biens/nouveau/{id}
+      path:     /Biens/nouveau
       defaults: { _controller:CSMainBundle:Biens:ajouter }
 
 
@@ -81,7 +81,7 @@ cs_main_Terrains_voir:
       defaults: { _controller:CSMainBundle:Terrains:voir}
 
 cs_main_Terrains_ajouter:
-      path:     /Terrains/nouveau/{id}
+      path:     /Terrains/nouveau/
       defaults: { _controller:CSMainBundle:Terrains:ajouter}
 
 cs_main_Terrains_bilan:
@@ -107,9 +107,62 @@ cs_main_Proprietaires_ajouter:
       path:     /Proprietaires/nouveau
       defaults: { _controller:CSMainBundle:Proprietaires:ajouter}
 
+cs_main_Immeubles_list:
+      path:     /Immeubles
+      defaults: { _controller:CSMainBundle:Immeubles:list }
+
+cs_main_Immeubles_edit:
+      path:     /Immeubles/{id}
+      defaults: { _controller:CSMainBundle:Immeubles:edit }
+
+cs_main_Immeubles_ajouter:
+      path:     /Immeubles/nouveau/
+      defaults: { _controller:CSMainBundle:Immeubles:ajouter }
+
+cs_main_Immeubles_supprimer:
+      path:     /Immeubles/supprimer/{id}
+      defaults: { _controller:CSMainBundle:Immeubles:supprimer }
+
+cs_main_Immeubles_bilan:
+      path:     /Immeubles/bilan/{id}
+      defaults: { _controller:CSMainBundle:Immeubles:bilan }
+
+cs_main_Immeubles_finances:
+      path:     /Immeubles/finance/{id}
+      defaults: { _controller:CSMainBundle:Immeubles:finances }
+
+cs_main_Locataires_list:
+      path:     /Locataires
+      defaults: { _controller:CSMainBundle:Locataires:list }
+
+cs_main_Locataires_edit:
+      path:     /Locataires/{id}
+      defaults: { _controller:CSMainBundle:Locataires:edit }
+
+cs_main_Locataires_ajouter:
+      path:     /Locataires/nouveau
+      defaults: { _controller:CSMainBundle:Locataires:ajouter }
+
+cs_main_Locataires_supprimer:
+      path:     /Locataires/supprimer/{id}
+      defaults: { _controller:CSMainBundle:Locataires:supprimer }
+
+cs_main_Locataires_modele_depart:
+      path:     /Locataires/modele_depart/{id}
+      defaults: { _controller:CSMainBundle:Locataires:depart }
+
+cs_main_Locataires_modele_entrer:
+      path:     /Locataires/modele_entrer/{id}
+      defaults: { _controller:CSMainBundle:Locataires:entrer }
+
+cs_main_Locataires_soldes:
+      path:     /Locataires/soldes/{id}
+      defaults: { _controller:CSMainBundle:Locataires:soldes }
 
 
-
+cs_main_Locataires_archiver:
+      path:     /Locataires/archiver/{id}
+      defaults: { _controller:CSMainBundle:Locataires:archiver }
 
 
 

@@ -41,7 +41,7 @@ class SidebarListener
             $ui = new MenuItemModel('ui-elements', 'UI Elements', '', $earg, 'fa fa-laptop')*/
         );
         $biens->addChild(new MenuItemModel('Biens', 'Biens', 'cs_main_Biens_list', $earg))
-            ->addChild(new MenuItemModel('Immeubles', 'Immeubles', 'cs_main_homepage', $earg));
+            ->addChild(new MenuItemModel('Immeubles', 'Immeubles', 'cs_main_Immeubles_list', $earg));
         $locations->addChild(new MenuItemModel('Locations', 'Locations', 'cs_main_Locations_list', $earg));
         $biens->addChild(new MenuItemModel('Terrains', 'Terrains', 'cs_main_Terrains_list', $earg));
 

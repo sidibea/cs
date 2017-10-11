@@ -14,7 +14,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class LocationsController extends Controller
 {
     public function listAction(){
-        return $this->render('CSMainBundle:Locations:list.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $list = $em->getRepository('CSMainBundle:Locations')->findAll();
+
+        return $this->render('CSMainBundle:Locations:list.html.twig', [
+            'list' => $list
+        ]);
+
 
     }
 

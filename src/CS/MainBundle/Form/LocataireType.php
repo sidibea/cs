@@ -2,9 +2,16 @@
 
 namespace CS\MainBundle\Form;
 
-use Doctrine\DBAL\Types\TextType;
+//use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Ldap\Adapter\ExtLdap\Collection;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LocataireType extends AbstractType
@@ -15,46 +22,134 @@ class LocataireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', SelectType::class,array(
-                'required' => true
+            ->add('type', ChoiceType::class,array(
+                'required' => true,
+                'choices' => array(
+                    'Particulier' => 'Particulier',
+                    'Société / Autre' => 'Société'
+                ),
+                'expanded' => false,
+                'placeholder' => '---',
             ))
 
-            ->add('civilite',SelectType::class,array(
-                'required' => true
-            ))
+            ->add('civilite',ChoiceType::class, array(
+                    'choices' => array(
+                        'Homme' => 'm',
+                        'Femme' => 'f',
+                    ),
+                    'placeholder' => '---',
+                    'expanded' => false,
+                    'required' => true
+                )
+            )
 
             ->add('prenom',TextType::class,array(
         'required' => true)
     )
 
-            ->add('nom')
-            ->add('dateNaissance')
-            ->add('email')
-            ->add('fax')
-            ->add('mobile')
-            ->add('adresse')
-            ->add('codePostal')
-            ->add('telephone')
-            ->add('ville')
-            ->add('societe')
-            ->add('noTva')
-            ->add('noNina')
-            ->add('professionExercee')
-            ->add('professionLocataire')
-            ->add('revenus')
-            ->add('situationProfession')
-            ->add('adresseProfessionnel')
-            ->add('villeProfessionnelle')
-            ->add('telephoneProfessionel')
-            ->add('notes')
-            ->add('codeBanque')
-            ->add('codeGuichet')
-            ->add('numeroCompte')
-            ->add('cleRib')
-            ->add('banque')
-            ->add('iban')
-            ->add('swift')
-            ->add('garants')        ;
+            ->add('nom', TextType::class,array(
+                'required' =>false))
+
+            ->add('dateNaissance', DateType::class, array(
+                'label' => 'DoB',
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy',
+                'input'  => 'datetime',
+                'error_bubbling' => true
+            ))
+            ->add('email', TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('fax', TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('mobile', TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('adresse',TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('codePostal',TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('telephone', TextType::class,array(
+                'required' =>false
+            ))
+            ->add('ville',TextType::class,array(
+                'required' =>false
+            ))
+            ->add('societe', TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('noTva', TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('noNina', TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('professionExercee', TextType::class,array(
+                'required' =>false
+            ))
+            ->add('professionLocataire',TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('revenus', TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('situationProfession', TextType::class,array(
+                'required' =>false
+            ))
+
+            ->add('adresseProfessionnel',TextType::class,array(
+                'required' =>false
+            ))
+            ->add('villeProfessionnelle', TextType::class,array(
+                'required' =>false
+            ))
+            ->add('telephoneProfessionel', TextType::class,array(
+                'required' =>false
+            ))
+            ->add('notes',TextareaType::class,array(
+                'required' =>false
+            ))
+            ->add('codeBanque', TextType::class,array(
+                'required' =>false
+            ))
+            ->add('codeGuichet', TextType::class,array(
+                'required' =>false
+            ))
+            ->add('numeroCompte', TextType::class,array(
+                'required' =>false
+            ))
+            ->add('cleRib',TextType::class,array(
+                'required' =>false
+            ))
+            ->add('banque',TextType::class,array(
+                'required' =>false
+            ))
+            ->add('iban', TextType::class,array(
+                'required' =>false
+            ))
+            ->add('swift',TextType::class,array(
+                'required' =>false
+            ))
+           ->add('garants', CollectionType::class, array(
+                'entry_type' => GarantsType::class,
+                'allow_add' => true,
+                'prototype' => true,
+
+            ))
+        ;
     }
     
     /**

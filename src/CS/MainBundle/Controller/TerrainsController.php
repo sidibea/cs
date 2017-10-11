@@ -14,7 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class TerrainsController extends Controller
 {
     public function listAction(){
-        return $this->render('CSMainBundle:Terrains:list.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+        $list = $em->getRepository('CSMainBundle:Terrains')->findAll();
+
+        return $this->render('CSMainBundle:Terrains:list.html.twig', [
+            'list' => $list
+        ]);
+
 
     }
 

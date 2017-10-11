@@ -1,12 +1,12 @@
 {% extends 'layout/base-layout.html.twig' %}
-{% block title %} Liste des biens  {% endblock %}
-{% block page_title %}Liste des biens{% endblock %}
+{% block title %} Liste des Locataires  {% endblock %}
+{% block page_title %}Liste des Locataires{% endblock %}
 {% block page_content %}
     <div class="row">
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title pull-right"><a href="{{ path('cs_main_Biens_ajouter') }}" class="btn bg-green margin">Nouveau Biens</a></h3>
+                    <h3 class="box-title pull-right"><a href="{{ path('cs_main_locataires_ajouter') }}" class="btn bg-green margin">Nouveau Locataire</a></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -14,26 +14,19 @@
                         <thead>
                         <tr>
                             <th>Code</th>
-                            <th>typeHabitat</th>
-                            <th>Immeuble</th>
-                            <th>LoyerHc</th>
-                            <th>Charge</th>
-                            <th>Adresse</th>
+                            <th>Nom</th>
+                            <th>Garant</th>
                             <th>Action</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for k, val in list %}
-                        <tr>
-                            <td>{{ val.code }}</td>
-                            <td> {{ val.typeHabitat }}</td>
-                            <td>  {{  val.immeuble.nom }}</td>
-                            <td>{{ val.loyerHc }}</td>
-                            <td>{{ val.charge }}</td>
-                            <td>{{ val.adresse }}</td>
-                            <td></td>
-                        </tr>
-                        {% endfor %}
+                        <td>{{ val.code }}</td>
+                        <td>{{ val.nom }}</td>
+                        <td>{{ val.garant.nom }}</td>
+                        <td></td>
+                        {% end for %}
 
 
 
@@ -41,12 +34,10 @@
                         <tfoot>
                         <tr>
                             <th>Code</th>
-                            <th>typeHabitat</th>
-                            <th>Immeuble</th>
-                            <th>loyerHc</th>
-                            <th>Charge</th>
-                            <th>Adresse</th>
+                            <th>Nom</th>
+                            <th>Garant</th>
                             <th>Action</th>
+
                         </tr>
                         </tfoot>
                     </table>
