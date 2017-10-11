@@ -1,0 +1,73 @@
+{% extends 'layout/base-layout.html.twig' %}
+{% block title %} Liste des propriétaires  {% endblock %}
+{% block page_title %}Liste des propriétaires{% endblock %}
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title pull-right"><a href="{{ path('cs_main_Proprietaires_ajouter') }}" class="btn bg-green margin">Nouveau Propriétaire</a></h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td></td>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Biens</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for key, val in list %}
+                                <tr>
+                                    <td></td>
+                                    <td>{{ val.code }}</td>
+                                    <td>{{ val.fullName }}</td>
+                                    <td>
+                                        {% for k, v in val.biens %}
+                                            {{ v.identifiant }}
+                                        {% endfor %}
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                            {% endfor %}
+
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Biens</th>
+                            <th>Action</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts_inline %}
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+{% endblock %}

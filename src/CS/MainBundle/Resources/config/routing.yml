@@ -1,0 +1,117 @@
+cs_main_homepage:
+    path:     /
+    defaults: { _controller:CSMainBundle:Dashboard:index }
+
+cs_main_Biens_list:
+    path:     /Biens
+    defaults: { _controller:CSMainBundle:Biens:list }
+
+
+cs_main_Biens_voir:
+      path:     /Biens/voir/{id}
+      defaults: { _controller:CSMainBundle:Biens:voir }
+
+cs_main_Biens_bilan:
+      path:     /Biens/bilan/{id}
+      defaults: { _controller:CSMainBundle:Biens:bilan }
+
+cs_main_Biens_archive:
+      path:     /Biens/archive/{id}
+      defaults: { _controller:CSMainBundle:Biens:archive }
+
+cs_main_Biens_edit:
+      path:     /Biens/{id}
+      defaults: { _controller:CSMainBundle:Biens:edit }
+
+cs_main_Biens_supprimer:
+      path:     /Biens/supprimer/{id}
+      defaults: { _controller:CSMainBundle:Biens:supprimer }
+
+cs_main_Biens_inventaires:
+      path:     /Biens/inventaires/{id}
+      defaults: { _controller:CSMainBundle:Biens:inventaires }
+
+cs_main_Biens_ajouter:
+      path:     /Biens/nouveau/{id}
+      defaults: { _controller:CSMainBundle:Biens:ajouter }
+
+
+cs_main_Locations_list:
+      path:     /Locations
+      defaults: { _controller:CSMainBundle:Locations:list }
+
+cs_main_Locations_edit:
+      path:     /Locations/{id}
+      defaults: { _controller:CSMainBundle:Locations:edit }
+
+cs_main_Locations_supprimer:
+      path:     /Locations/supprimer /{id}
+      defaults: { _controller:CSMainBundle:Locations:supprimer }
+
+cs_main_Locations_desactiver:
+      path:     /Locations/desactiver/{id}
+      defaults: { _controller:CSMainBundle:Locations:desactiver }
+
+cs_main_Locations_archiver:
+      path:     /Locations/archiver/{id}
+      defaults: { _controller:CSMainBundle:Locations:archiver }
+
+cs_main_Locations_modeles_contrat:
+      path:     /Locations/modeles/contrat/{id}
+      defaults: { _controller:CSMainBundle:Locations:contrat }
+
+cs_main_Locations_modeles_depart:
+      path:     /Locations/modeles/depart/{id}
+      defaults: { _controller:CSMainBundle:Locations:depart }
+
+cs_main_Locations_modeles_entrer:
+      path:     /Locations/modeles/entrer/{id}
+      defaults: { _controller:CSMainBundle:Locations:entrer }
+
+cs_main_Locations_ajouter:
+      path:     /Locations/nouveau
+      defaults: { _controller:CSMainBundle:Locations:ajouter }
+
+cs_main_Terrains_list:
+      path:     /Terrains
+      defaults: { _controller:CSMainBundle:Terrains:list}
+
+cs_main_Terrains_voir:
+      path:     /Terrains/voir/{id}
+      defaults: { _controller:CSMainBundle:Terrains:voir}
+
+cs_main_Terrains_ajouter:
+      path:     /Terrains/nouveau/{id}
+      defaults: { _controller:CSMainBundle:Terrains:ajouter}
+
+cs_main_Terrains_bilan:
+      path:     /Terrains/bilan/{id}
+      defaults: { _controller:CSMainBundle:Terrains:bilan}
+
+cs_main_Terrains_archive:
+      path:     /Terrains/archive/{id}
+      defaults: { _controller:CSMainBundle:Terrains:archive}
+
+cs_main_Terrains_edit:
+      path:     /Terrains/{id}
+      defaults: { _controller:CSMainBundle:Terrains:edit}
+
+cs_main_Terrains_supprimer:
+      path:     /Terrains/supprimer/{id}
+      defaults: { _controller:CSMainBundle:Terrains:supprimer}
+
+cs_main_Proprietaires_list:
+      path:     /Proprietaires
+      defaults: { _controller:CSMainBundle:Proprietaires:list}
+cs_main_Proprietaires_ajouter:
+      path:     /Proprietaires/nouveau
+      defaults: { _controller:CSMainBundle:Proprietaires:ajouter}
+
+
+
+
+
+
+
+
+

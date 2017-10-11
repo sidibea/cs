@@ -1,0 +1,516 @@
+{% import "AvanzuAdminThemeBundle:layout:macros.html.twig" as macro %}
+<!doctype html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]><html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>{% block title %}{{ site_name }}{% endblock %}</title>
+
+    {# -------------------------------------------------------------------------------------------------- STYLESHEETS #}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        <link rel="stylesheet" href="{{ asset('bundles/avanzuadmintheme/static/'~ app.environment ~'/styles/admin-lte-all.css') }}" />
+    {% endblock %}
+
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {# --------------------------------------------------------------------------------------------- JAVASCRIPTS_HEAD #}
+    {%  block javascripts_head %}
+        <script type="text/javascript" src="{{ asset('bundles/avanzuadmintheme/static/'~app.environment~'/scripts/modernizr.js') }}"></script>
+        <!--[if lt IE 9]>
+
+        <![endif]-->
+
+        <style type="text/css">
+
+        /* Dash Tiles */
+        .dash-tile {
+            min-height: 110px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin: 0 0 20px;
+            padding: 0 10px;
+            -webkit-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.05);
+            -moz-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.05);
+            box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.05);
+        }
+
+        .dash-tile:hover {
+            -webkit-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.25);
+            -moz-box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.25);
+            box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.25);
+        }
+
+        .dash-tile-2x {
+            min-height: 400px;
+        }
+
+        .dash-tile-header {
+            margin: 0 -10px;
+            padding: 0 4px 0 10px;
+            min-height: 38px;
+            line-height: 40px;
+            font-weight: 600;
+            border-bottom: 2px solid #ddd;
+            background-color: #eee;
+            text-shadow: 1px 1px 0px white;
+        }
+
+        .dash-tile-options {
+            float: right;
+            height: 38px;
+            line-height: 41px;
+        }
+
+        .dash-tile-options a:hover {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dash-tile-content {
+            margin: 0 -14px;
+            padding: 5px;
+        }
+
+        .dash-tile-2x .dash-tile-content {
+            padding: 15px;
+        }
+
+        .dash-tile-content-inner {
+            height: 130px;
+        }
+
+        .dash-tile-content-inner-white {
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 10px;
+        }
+
+        .dash-tile-2x .dash-tile-content-inner {
+            height: 330px;
+        }
+
+        .dash-tile-content-inner-fluid {
+            min-height: 130px;
+        }
+
+        .dash-tile-2x .dash-tile-content-inner-fluid {
+            min-height: 330px;
+        }
+
+        .dash-tile-content-light {
+            background-color: #ffffff;
+            padding: 10px;
+        }
+
+        .dash-tile-content .alert {
+            margin: 5px 0;
+        }
+
+        .dash-tile-icon,
+        .dash-tile-text {
+            line-height: normal;
+            color: #fff;
+        }
+
+        .dash-tile-icon{
+            float:left;
+            padding:18px 0 0 0;
+            font-size:36px;
+            text-align:left;
+            color:#c1c1c1
+        }
+        .dash-tile-text{
+            float:right;
+            padding:15px 0 0 0;
+            font-size:40px;
+            font-weight: 600;
+            text-align:right;
+            color:#777;
+        }
+
+        .dash-tile-text.green{
+            color: #72a333;
+        }
+        .dash-tile-text span{
+            display: inline-block;
+            font-size:14px;
+            font-weight:normal;
+            text-transform: uppercase;
+            text-align:left;
+            color:#a0a0a0;
+        }
+
+        .dash-tile-text span b.red{
+            color: #cc0000;
+        }
+
+        .dash-tile-text span b{
+            color: #555;
+        }
+
+        .dash-tile-text [class^="icon-"], .dash-tile-text [class*="icon-"]{
+            display: inline-block;
+            font-size:14px;
+            font-weight:normal;
+            text-transform: uppercase;
+            text-align:left;
+            color:#c1c1c1
+        }
+
+        .dash-tile-leaf .dash-tile-header,
+        .dash-tile-dark .dash-tile-header,
+        .dash-tile-ocean .dash-tile-header,
+        .dash-tile-flower .dash-tile-header,
+        .dash-tile-fruit .dash-tile-header,
+        .dash-tile-oil .dash-tile-header,
+        .dash-tile-balloon .dash-tile-header,
+        .dash-tile-doll .dash-tile-header {
+            border-bottom: 2px solid #f9f9f9;
+            background-color: #eee;
+            opacity: 0.45;
+            filter: alpha(opacity=45);
+        }
+
+        .dash-tile-leaf.no-opacity .dash-tile-header,
+        .dash-tile-dark.no-opacity .dash-tile-header,
+        .dash-tile-ocean.no-opacity .dash-tile-header,
+        .dash-tile-flower.no-opacity .dash-tile-header,
+        .dash-tile-fruit.no-opacity .dash-tile-header,
+        .dash-tile-oil.no-opacity .dash-tile-header,
+        .dash-tile-balloon.no-opacity .dash-tile-header,
+        .dash-tile-doll.no-opacity .dash-tile-header {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        .dash-tile-leaf:hover,
+        .dash-tile-dark:hover,
+        .dash-tile-ocean:hover,
+        .dash-tile-flower:hover,
+        .dash-tile-fruit:hover,
+        .dash-tile-oil:hover,
+        .dash-tile-balloon:hover,
+        .dash-tile-doll:hover {
+            opacity: 0.90;
+            filter: alpha(opacity=90);
+        }
+
+        .dash-tile-leaf.no-opacity:hover,
+        .dash-tile-dark.no-opacity:hover,
+        .dash-tile-ocean.no-opacity:hover,
+        .dash-tile-flower.no-opacity:hover,
+        .dash-tile-fruit.no-opacity:hover,
+        .dash-tile-oil.no-opacity:hover,
+        .dash-tile-balloon.no-opacity:hover,
+        .dash-tile-doll.no-opacity:hover {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        .dash-tile-grey {
+            background-color: #f6f6f6;
+            text-shadow: 0px 1px 0px white;
+        }
+
+        .dash-tile-header .btn {
+            color: #777777;
+        }
+
+        .dash-tile-leaf {
+            background-color: #c2db39;
+        }
+
+        .dash-tile-dark {
+            background-color: #ddd;
+        }
+
+        .dash-tile-ocean {
+            background-color: #3991db;
+        }
+
+        .dash-tile-flower {
+            background-color: #9139db;
+        }
+
+        .dash-tile-fruit {
+            background-color: #db9839;
+        }
+
+        .dash-tile-oil {
+            background-color: #d9db39;
+        }
+
+        .dash-tile-balloon {
+            background-color: #db6739;
+        }
+
+        .dash-tile-doll {
+            background-color: #db39bb;
+        }
+
+        .form-box {
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .form-box-header {
+            margin: 0;
+            padding: 20px;
+            border-bottom: 2px solid #ddd;
+            background-color: #f5f5f5;
+            text-shadow: 1px 1px 0px white;
+            font-weight: 600;
+        }
+        .form-box-content {
+            padding: 0 20px;
+        }
+
+        .form-box .control-group {
+            margin: 0 -20px;
+            padding: 12px 5px;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-box .control-group.no-border {
+            margin: 0 -20px;
+            padding: 12px 5px;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .form-box .form-actions {
+            padding-left: 200px;
+            margin: -1px -20px 0;
+            padding-left: 185px;
+            border-top: 2px solid #ddd;
+        }
+
+        .form-box .help-inline,
+        .form-box .help-block,
+        .help-block {
+            color: #999;
+        }
+
+        .form-box .title-block {
+            color: #333333;
+            font-size: 11px;
+            font-weight: bolder;
+        }
+
+        .form-box .help-block {
+            margin: 7px 0 3px;
+        }
+
+        .form-box .control-group {
+            margin: 0 -20px;
+            padding: 12px 5px;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-box .control-group.no-border {
+            margin: 0 -20px;
+            padding: 12px 5px;
+            border-top: none;
+            border-bottom: none;
+        }
+        .form-horizontal .control-label {
+            float: left;
+            width: 160px;
+            padding-top: 5px;
+            text-align: right;
+        }
+        .form-box .form-actions {
+            padding-left: 200px;
+            margin: -1px -20px 0;
+            padding-left: 185px;
+            border-top: 2px solid #ddd;
+        }
+
+    </style>
+
+    {% endblock %}
+
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+
+<body class="{{ admin_skin|default('skin-blue')}} fixed sidebar-mini">
+<div class="wrapper">
+
+    {% block avanzu_admin_header %}
+        <header class="main-header">
+            {% block avanzu_logo %}
+                <a href="{{ path('cs_main_homepage') }}" class="logo">
+                    <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                    <span class="logo-mini">
+                        <!-- mini logo for sidebar mini 50x50 pixels -->
+                        <img src="{{ asset('bundles/app/images/logo-mini.jpg') }}" alt="">
+                    </span>
+                    <span class="logo-lg">
+                        {{ site_name }}
+                    </span>
+                </a>
+            {% endblock %}
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                {% if app.user is not null and is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            {% block avanzu_navbar %}
+                                {{ render(controller('AvanzuAdminThemeBundle:Navbar:messages')) }}
+                                {{ render(controller('AvanzuAdminThemeBundle:Navbar:notifications')) }}
+                                {{ render(controller('AvanzuAdminThemeBundle:Navbar:tasks')) }}
+                                {{ render(controller('CSMainBundle:Navbar:user')) }}
+                            {% endblock %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </nav>
+        </header>
+    {% endblock %}
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar sidebar-offcanvas">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            {% block avanzu_sidebar %}
+                {% if app.user is not null and is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ render(controller('CSMainBundle:Sidebar:userPanel')) }}
+                    {{ render(controller('AvanzuAdminThemeBundle:Sidebar:searchForm')) }}
+                {% endif %}
+                {{ render(controller('AvanzuAdminThemeBundle:Sidebar:menu', {'request':app.request})) }}
+            {% endblock %}
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {% block page_title %}Page Title{% endblock %}
+                <small>{% block page_subtitle %}{% endblock %}</small>
+            </h1>
+            {% block avanzu_breadcrumb %}
+                {{ render(controller('CSMainBundle:Breadcrumb:breadcrumb', {'request':app.request, 'title' : block('page_title')})) }}
+            {% endblock %}
+        </section>
+
+        <!-- Alert Boxes -->
+        {% if app.session.flashBag.has('success')
+        or app.session.flashBag.has('error')
+        or app.session.flashBag.has('notice')
+        %}
+            <section class="flash-messages content-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if app.session.flashBag.has('success') %}
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                                {% for msg in app.session.flashBag.get('success') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if app.session.flashBag.has('error') %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                {% for msg in app.session.flashBag.get('error') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if app.session.flashBag.has('notice') %}
+                            <div class="alert alert-info alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-info"></i> Notice!</h4>
+                                {% for msg in app.session.flashBag.get('notice') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if app.session.flashBag.has('warning') %}
+                            <div class="alert alert-info alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+                                {% for msg in app.session.flashBag.get('warning') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+        <!-- Main content -->
+        <section class="content">
+            {% block page_content %}
+
+            {% endblock %}
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    {% block avanzu_admin_footer %}
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2018 <a href="http://nex-group.net">Next Group</a>.</strong> All rights reserved.</strong>
+        </footer>
+    {% endblock %}
+
+</div>
+<!-- ./wrapper -->
+
+{# ------------------------------------------------------------------------------------------------------ JAVASCRIPTS #}
+{% block javascripts %}
+
+    <script src="{{ asset('bundles/avanzuadmintheme/static/'~app.environment~'/scripts/admin-lte-all.js') }}"></script>
+{% endblock %}
+
+{# ----------------------------------------------------------------------------------------------- JAVASCRIPTS_INLINE #}
+{% block javascripts_inline %}
+{% endblock %}
+</body>
+</html>

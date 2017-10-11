@@ -1,0 +1,317 @@
+{% extends 'layout/base-layout.html.twig' %}
+{% block title %} Ajouter un nouveau propriétaire  {% endblock %}
+{% block page_title %}Ajouter un nouveau propriétaire{% endblock %}
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                {{ form_start(form, {'attr':{'class':'form-box'}}) }}
+
+                {# Les erreurs générales du formulaire. #}
+                {{ form_errors(form) }}
+                    <!-- /.box-header -->
+                 <div class="box-body">
+                     <blockquote>
+                         <p>Cette page est destinée aux multi-propriétaires. Elle permets d'ajouter et désigner <b>différents propriétaires</b> pour <b>chacun de vos locaux</b>, le nom et l'adresse du propriétaire choisi apparaîtront aussi sur les quittances de loyer.</p>
+                     </blockquote>
+                     <h4 class="form-box-header">Type</h4>
+
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.type, "Type *") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.type) }}
+                             {{ form_widget(form.type, {'attr': {'class': 'form-control type', 'placeholder' : 'Autres informations' }}) }}
+                         </div>
+                     </div>
+                     <h4 class="form-box-header">Informations personnelles</h4>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.civilite, "Civilité *") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.civilite) }}
+                             {{ form_widget(form.civilite, {'attr': {'class': 'form-control ', 'placeholder' : 'Autres informations' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.nom, "Nom *") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.nom) }}
+                             {{ form_widget(form.nom, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                             <span class="help-block">Ces noms figureront sur la quittances de loyer et autres documents. </span>
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.prenom, "Prénom *") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.prenom) }}
+                             {{ form_widget(form.prenom, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                             <span class="help-block">Ces prénoms figureront sur la quittances de loyer et autres documents.</span>
+                         </div>
+                     </div>
+                     <div class="form-group ">
+                         {{ form_label(form.dateDeNaissance, "Date de naissance") }}
+
+                         {# Affichage des erreurs pour ce champ précis. #}
+                         {{ form_errors(form.dateDeNaissance) }}
+                         <div class="input-group">
+                             <div class="input-group-addon">
+                                 <i class="glyphicon glyphicon-calendar "></i>
+                             </div>
+                             {# Génération de l'input. #}
+                             {{ form_widget(form.dateDeNaissance, {'attr': { 'class': 'form-control datepicker', 'placeholder' : '',  'data-inputmask' : "'alias': 'dd/mm/yyyy'" , 'data-mask':'' }}) }}
+
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.lieuDeNaissance, "Lieu de naissance") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.lieuDeNaissance) }}
+                             {{ form_widget(form.lieuDeNaissance, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.photoFile, "Photo") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.photoFile) }}
+                             {{ form_widget(form.photoFile, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+
+                     <h4 class="form-box-header">Adresse</h4>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.adresse, "Adresse") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.adresse) }}
+                             {{ form_widget(form.adresse, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.codePostal, "Code Postal") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.codePostal) }}
+                             {{ form_widget(form.codePostal, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.ville, "Ville") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.ville) }}
+                             {{ form_widget(form.ville, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <h4 class="form-box-header">Information de contact</h4>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.telephone, "Telephone") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.telephone) }}
+                             {{ form_widget(form.telephone, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.mobile, "Portable") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.mobile) }}
+                             {{ form_widget(form.mobile, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.fax, "Portable") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.fax) }}
+                             {{ form_widget(form.fax, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.email, "Adresse Email") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.email) }}
+                             {{ form_widget(form.email, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.siteWeb, "Site Web") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.siteWeb) }}
+                             {{ form_widget(form.siteWeb, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.commentaire, "Commentaire") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.commentaire) }}
+                             {{ form_widget(form.commentaire, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+
+                     <h4 class="form-box-header">Informations société</h4>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.societe, "Societe") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.societe) }}
+                             {{ form_widget(form.societe, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.noNif, "N° NIF") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.noNif) }}
+                             {{ form_widget(form.noNif, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.capital, "Capital") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.capital) }}
+                             {{ form_widget(form.capital, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.noNina, "N° NINA") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.noNina) }}
+                             {{ form_widget(form.noNina, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <h4 class="form-box-header">Logo Principal</h4>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.logoFile, "Logo") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.logoFile) }}
+                             {{ form_widget(form.logoFile, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <h4 class="form-box-header">Coordonnées bancaires</h4>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.banque, "Banque") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.banque) }}
+                             {{ form_widget(form.banque, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.adresseBanque, "Adresse") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.adresseBanque) }}
+                             {{ form_widget(form.adresseBanque, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.villeBanque, "Ville") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.villeBanque) }}
+                             {{ form_widget(form.villeBanque, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.villeBanque, "Ville") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.villeBanque) }}
+                             {{ form_widget(form.villeBanque, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.paysBanque, "Pays") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.paysBanque) }}
+                             {{ form_widget(form.paysBanque, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.iban, "Iban") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.iban) }}
+                             {{ form_widget(form.iban, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+                     <div class="form-box-content">
+                         <div class="form-group control-group">
+                             {{ form_label(form.swift, "Iban") }}
+
+                             {# Affichage des erreurs pour ce champ précis. #}
+                             {{ form_errors(form.swift) }}
+                             {{ form_widget(form.swift, {'attr': {'class': 'form-control ', 'placeholder' : '' }}) }}
+                         </div>
+                     </div>
+
+
+
+                 </div>
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-success" value="Sauvegarder">
+                    <input type="button" class="btn" value="Annuler" onclick="window.location.href='{{ path('cs_main_Proprietaires_list') }}';">
+
+                </div>
+            </div>
+                {{ form_rest(form) }}
+
+                {# Fermeture de la balise <form> du formulaire HTML #}
+                {{ form_end(form) }}
+            </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts_inline %}
+    <script type="text/javascript">
+        $(function () {
+            //Date picker
+            $('.datepicker').datepicker({
+                autoclose: true
+            });
+
+
+
+        });
+    </script>
+{% endblock %}

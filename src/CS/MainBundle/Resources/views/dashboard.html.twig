@@ -1,0 +1,63 @@
+{% extends 'layout/base-layout.html.twig' %}
+{% block title %} Bureau  {% endblock %}
+{% block page_title %}Bureau{% endblock %}
+{% block page_content %}
+    {{ render(controller('CSMainBundle:Dashboard:boxes')) }}
+
+  <div class="row">
+      <div class="dash-tiles row-fluid">
+          <div class="col-md-4">
+              <div class="dash-tile dash-tile-grey clearfix">
+                  <div class="dash-tile-header">
+                      <div class="dash-tile-options">
+                          <div class="btn-group">
+                              <a href="/landlord/#properties/" class="btn" data-toggle="tooltip" title="" data-original-title="Gérer"><i class="fa fa-gear"></i></a>
+                              <a href="/landlord/#payments" class="btn" data-toggle="tooltip" title="" data-original-title="Finances"><i class="fa fa-money"></i></a>
+                          </div>
+                      </div>
+                      BIENS
+                  </div>
+                  <div class="dash-tile-icon"><i class="icon-home9"></i></div>
+                  <div class="dash-tile-text green">1 <span><b>de 1</b><br>0 Archives</span> <a href="/landlord/#properties/archive"><i class="icon-cog"></i></a></div>
+              </div>
+          </div>
+
+          <div class="col-md-4">
+              <div class="dash-tile dash-tile-grey clearfix">
+                  <div class="dash-tile-header">
+                      <div class="dash-tile-options">
+                          <div class="btn-group">
+                              <a href="/landlord/#tenants/" class="btn" data-toggle="tooltip" title="" data-original-title="Gérer"><i class="icon-cog"></i></a>
+
+                          </div>
+                      </div>
+                      LOCATAIRES
+                  </div>
+                  <div class="dash-tile-icon"><i class="icon-users"></i></div>
+                  <div class="dash-tile-text green">2 <span><b>de 2</b><br>0 Archives</span>  <a href="/landlord/#tenants/archive"><i class="icon-cog"></i></a></div>
+              </div>
+          </div>
+
+          <div class="col-md-4">
+              <div class="dash-tile dash-tile-grey clearfix">
+                  <div class="dash-tile-header">
+                      <div class="dash-tile-options">
+                          <div class="btn-group">
+                              <a href="/landlord/#leases/" class="btn" data-toggle="tooltip" title="" data-original-title="Gérer"><i class="icon-cog"></i></a>
+                              <a href="/landlord/#payments" class="btn" data-toggle="tooltip" title="" data-original-title="Finances"><i class="icon-cash"></i></a>
+                          </div>
+                      </div>
+                      LOCATIONS
+                  </div>
+                  <div class="dash-tile-icon"><i class="icon-key"></i></div>
+                  <div class="dash-tile-text green">1 <span><b>de 2</b><br>0 Archives</span>  <a href="/landlord/#leases/archive"><i class="icon-cog"></i></a></div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+{% endblock %}
+
+{% block javascripts_inline %}
+{% endblock %}
