@@ -9,6 +9,8 @@
 namespace CS\MainBundle\Controller;
 
 
+use CS\MainBundle\Entity\Immeubles;
+use CS\MainBundle\Form\ImmeublesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ImmeublesController extends Controller
@@ -26,7 +28,16 @@ class ImmeublesController extends Controller
 
     public function ajouterAction()
     {
-        return $this->render('CSMainBundle:Immeubles:ajouter.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $immeubles = new Immeubles();
+        $form = $this->createForm(ImmeublesType::class, $immeubles);
+
+
+        return $this->render('CSMainBundle:Immeubles:ajouter.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+
     }
 
     public function editAction($id)

@@ -9,6 +9,8 @@
 namespace CS\MainBundle\Controller;
 
 
+use CS\MainBundle\Entity\Locataire;
+use CS\MainBundle\Form\LocataireType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class LocatairesController extends Controller
@@ -17,9 +19,9 @@ class LocatairesController extends Controller
     public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $list = $em->getRepository('CSMainBundle:Locataires')->findAll();
+        $list = $em->getRepository('CSMainBundle:Locataire')->findAll();
 
-        return $this->render('CSMainBundle:Locataire:list.html.twig', [
+        return $this->render('CSMainBundle:Locataires:list.html.twig', [
             'list' => $list
         ]);
 
@@ -28,7 +30,13 @@ class LocatairesController extends Controller
 
     public function ajouterAction()
     {
-        return $this->render('CSMainBundle:Locataires:ajouter.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $locataire = new Locataire();
+        $form = $this->createForm(LocataireType::class,$locataire);
+
+        return $this->render('CSMainBundle:Locataires:ajouter.html.twig', [
+            'form' => $form->createView()
+        ]);
 
     }
 

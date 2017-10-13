@@ -31,7 +31,7 @@ class SidebarListener
             $dash = new MenuItemModel('Bureau', 'Bureau', 'cs_main_homepage', $earg, 'fa fa-dashboard'),
             $Proprietaires = new MenuItemModel('proprietaire', 'Proprietaires', 'cs_main_Proprietaires_list', $earg, 'fa fa-users'),
             $biens = new MenuItemModel('biens', 'Biens', '', $earg, 'fa fa-institution'),
-            $locataires = new MenuItemModel('Locataires', 'Locataires', 'cs_main_homepage', $earg,  'fa fa-key'),
+            $locataires = new MenuItemModel('Locataires', 'Locataires', 'cs_main_Locataires_list', $earg,  'fa fa-key'),
             $locations = new MenuItemModel('locations', 'Locations', '', $earg, 'fa fa-institution'),
             $finances = new MenuItemModel('Finances', 'Finances', '', $earg, 'fa fa-money'),
             $carnet = new MenuItemModel('Carnet', 'Carnet', 'cs_main_homepage', $earg, 'fa fa-book'),

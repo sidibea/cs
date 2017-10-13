@@ -99,8 +99,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-success" value="Sauvegarder">
+                    <input type="button" class="btn" value="Annuler" onclick="window.location.href='{{ path('cs_main_Proprietaires_list') }}';">
+
+                </div>
             </div>
+            {{ form_rest(form) }}
+
+            {# Fermeture de la balise <form> du formulaire HTML #}
+            {{ form_end(form) }}
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts_inline %}
+    <script type="text/javascript">
+        $(function () {
+            //Date picker
+            $('.datepicker').datepicker({
+                autoclose: true
+            });
+
+        });
+    </script>
 {% endblock %}

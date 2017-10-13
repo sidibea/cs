@@ -1,45 +1,41 @@
 {% extends 'layout/base-layout.html.twig' %}
-{% block title %} Liste des propriétaires  {% endblock %}
-{% block page_title %}Liste des propriétaires{% endblock %}
+{% block title %} Liste des terrains  {% endblock %}
+{% block page_title %}Liste des terrains {% endblock %}
 {% block page_content %}
     <div class="row">
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                    <h3 class="box-title pull-right"><a href="{{ path('cs_main_Terrains_ajouter') }}" class="btn bg-green margin">Nouveau Terrains</a></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>code</th>
+                            <th>Ville</th>
+                            <th>Adresse</th>
+                            <th>Action</th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
-                            <td>X</td>
-                        </tr>
+                        {% for k, val in list %} }
+                            <td>{{ val.nom}}</td>
+                            <td>{{ val.ville }}</td>
+                            <td>{{ val.adresse}}</td>
+                            <td></td>
 
+                        {% endfor %}
 
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>code</th>
+                            <th>Ville</th>
+                            <th>Adresse</th>
+                            <th>Action</th>
                         </tr>
                         </tfoot>
                     </table>

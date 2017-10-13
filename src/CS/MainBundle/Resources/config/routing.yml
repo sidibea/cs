@@ -40,9 +40,7 @@ cs_main_Locations_list:
       path:     /Locations
       defaults: { _controller:CSMainBundle:Locations:list }
 
-cs_main_Locations_edit:
-      path:     /Locations/{id}
-      defaults: { _controller:CSMainBundle:Locations:edit }
+
 
 cs_main_Locations_supprimer:
       path:     /Locations/supprimer /{id}
@@ -81,7 +79,7 @@ cs_main_Terrains_voir:
       defaults: { _controller:CSMainBundle:Terrains:voir}
 
 cs_main_Terrains_ajouter:
-      path:     /Terrains/nouveau/
+      path:     /Terrains/nouveau
       defaults: { _controller:CSMainBundle:Terrains:ajouter}
 
 cs_main_Terrains_bilan:
@@ -116,7 +114,7 @@ cs_main_Immeubles_edit:
       defaults: { _controller:CSMainBundle:Immeubles:edit }
 
 cs_main_Immeubles_ajouter:
-      path:     /Immeubles/nouveau/
+      path:     /Immeubles/nouveau
       defaults: { _controller:CSMainBundle:Immeubles:ajouter }
 
 cs_main_Immeubles_supprimer:
@@ -136,7 +134,7 @@ cs_main_Locataires_list:
       defaults: { _controller:CSMainBundle:Locataires:list }
 
 cs_main_Locataires_edit:
-      path:     /Locataires/{id}
+      path:     /Locataires/edit/{id}
       defaults: { _controller:CSMainBundle:Locataires:edit }
 
 cs_main_Locataires_ajouter:
