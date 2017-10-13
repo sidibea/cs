@@ -9,6 +9,8 @@
 namespace CS\MainBundle\Controller;
 
 
+use CS\MainBundle\Entity\Terrain;
+use CS\MainBundle\Form\TerrainType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class TerrainsController extends Controller
@@ -16,7 +18,7 @@ class TerrainsController extends Controller
     public function listAction(){
 
         $em = $this->getDoctrine()->getManager();
-        $list = $em->getRepository('CSMainBundle:Terrains')->findAll();
+        $list = $em->getRepository('CSMainBundle:Terrain')->findAll();
 
         return $this->render('CSMainBundle:Terrains:list.html.twig', [
             'list' => $list
@@ -27,7 +29,14 @@ class TerrainsController extends Controller
 
     public function ajouterAction()
     {
-        return $this->render('CSMainBundle:Terrains:ajouter.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $terrain = new Terrain();
+        $form = $this->createForm(TerrainType::class, $terrain);
+
+
+        return $this->render('CSMainBundle:Terrains:ajouter.html.twig', [
+            'form' => $form->createView()
+        ]);
 
     }
 

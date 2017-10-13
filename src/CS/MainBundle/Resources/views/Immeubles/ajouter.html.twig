@@ -1,0 +1,72 @@
+{% extends 'layout/base-layout.html.twig' %}
+{% block title %} Ajouter Un Nouveau Immeuble {% endblock %}
+{% block page_title %}Ajouter Un Nouveau Immeuble {% endblock %}
+{% block page_content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            {{ form_start(form, {'attr':{'class':'form-box'}}) }}
+
+            {# Les erreurs générales du formulaire. #}
+            {{ form_errors(form) }}
+            <div class="box-body">
+                <blockquote>
+                    <p>Veuillez remplir les champs ci-dessous pour ajouter un nouveau Immeuble.<br/>
+                        Certaines informartions sont réprises à titre indicatif dans la fiche produit et le flyer électronique
+                </blockquote>
+                <h4 class="form-box-header">Informations générales</h4>
+
+                <div class="form-box-content">
+                    <div class="form-group control-group">
+                        {{ form_label(form.nom, "Nom *") }}
+
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.nom) }}
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
+                    </div>
+                </div>
+                <div class="form-box-content">
+                    <div class="form-group control-group">
+                        {{ form_label(form.adresse, " Adresse") }}
+
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.adresse) }}
+                        {{ form_widget(form.adresse, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
+                    </div>
+                </div>
+                <div class="form-box-content">
+                    <div class="form-group control-group">
+                        {{ form_label(form.biens, "Biens") }}
+
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.biens) }}
+                        {{ form_widget(form.biens, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <input type="submit" class="btn btn-success" value="Sauvegarder">
+                <input type="button" class="btn" value="Annuler" onclick="window.location.href='{{ path('cs_main_Proprietaires_list') }}';">
+
+            </div>
+        </div>
+        {{ form_rest(form) }}
+
+        {# Fermeture de la balise <form> du formulaire HTML #}
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts_inline %}
+    <script type="text/javascript">
+        $(function () {
+            //Date picker
+            $('.datepicker').datepicker({
+                autoclose: true
+            });
+
+        });
+    </script>
+{% endblock %}

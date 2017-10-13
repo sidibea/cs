@@ -9,6 +9,8 @@
 namespace CS\MainBundle\Controller;
 
 
+use CS\MainBundle\Entity\Locations;
+use CS\MainBundle\Form\LocationsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class LocationsController extends Controller
@@ -26,7 +28,14 @@ class LocationsController extends Controller
 
     public function ajouterAction()
     {
-        return $this->render('CSMainBundle:Locations:ajouter.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $locations=new Locations();
+        $form = $this->createForm(LocationsType::class, $locations);
+
+
+        return $this->render('CSMainBundle:Locations:ajouter.html.twig', [
+            'form' => $form->createView()
+        ]);
 
     }
 
