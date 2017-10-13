@@ -13,7 +13,6 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <td></td>
                             <th>Code</th>
                             <th>Nom</th>
                             <th>Biens</th>
@@ -24,15 +23,31 @@
                         <tbody>
                             {% for key, val in list %}
                                 <tr>
-                                    <td></td>
                                     <td>{{ val.code }}</td>
                                     <td>{{ val.fullName }}</td>
+                                    <td></td>
                                     <td>
                                         {% for k, v in val.biens %}
                                             {{ v.identifiant }}
                                         {% endfor %}
                                     </td>
                                     <td></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{{ path('cs_main_Proprietaires_modifier', {'id': val.id}) }}" class="btn btn-danger">Modifier</a>
+                                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#">Finances</a></li>
+                                                <li><a href="#">Bilan Financier</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="{{ path('cs_main_Proprietaires_supprimer', {'id': val.id}) }}" onclick=" return confirm('Attention ! en supprimant ce bien, toutes les informations liées à ce bien seront supprimées ');">Supprimer</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+
                                 </tr>
 
                             {% endfor %}
@@ -41,10 +56,10 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>code</th>
+                            <th>Code</th>
                             <th>Nom</th>
                             <th>Biens</th>
-                            <th>Locataire</th>
+                            <th>Locataire<th>
                             <th>Action</th>
                         </tr>
                         </tfoot>

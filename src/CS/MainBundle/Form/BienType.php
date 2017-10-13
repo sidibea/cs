@@ -2,7 +2,9 @@
 
 namespace CS\MainBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Gedmo\Mapping\Driver\File;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,7 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use function Symfony\Component\Validator\Tests\Constraints\choice_callback;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class BienType extends AbstractType
 {
@@ -21,15 +24,29 @@ class BienType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('code',TextType::class,array(
-        'required' =>true
-    ))
-            ->add('typeDeBien',choiceType::class,array(
-                'required' =>false
+        $builder
+
+            ->add('typeDeBien', ChoiceType::class, array(
+                'choices' => array(
+                    'Appartement' => 'Appartement',
+                    'Maison individuelle' => 'Maison individuelle',
+                    'Studio' => 'Studio',
+                    'Local professionnel' => 'Local professionnel',
+                    'Commerce' => 'Commerce',
+                    'Bureaux' => 'Bureaux',
+                    'Chambre' => 'Chambre',
+                    'Entrepot' => 'Entreprot',
+                    'Atelier' => 'Atelier',
+                    'Chalet' => 'Chalet',
+                    'Bureau partagé' => 'Bureau partagé'
+                ),
+                'expanded' => false,
+                'required' => true,
+                'placeholder' => '---',
             ))
             ->add('identifiant',TextType::class,array(
-        'required' =>true
-    ))
+                'required' =>true
+            ))
             ->add('adresse',TextareaType::class,array(
                 'required' =>true
             ))
@@ -63,13 +80,25 @@ class BienType extends AbstractType
             ->add('anneeDeConstruction',TextType::class,array(
                 'required' =>false
             ))
-            ->add('description',TextareaType::class,array(
-                'required' =>false
+            ->add('description', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff',
+                    //...
+                ),
             ))
-            ->add('note',TextType::class,array(
-                'required' =>false
+            ->add('note', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff',
+                    //...
+                ),
             ))
-            ->add('typeDeLocationPropose',ChoiceType::class,array(
+            ->add('typeDeLocationPropose', ChoiceType::class,array(
+                'choices' => array(
+                    'Meublée' => 'Meublée',
+                    'vide' => 'vide',
+                    'Saisonnière' => 'Saisonnière',
+                ),
+
                 'required' =>false
             ))
             ->add('dureeMinimaleDeLocation',IntegerType::class,array(
@@ -81,30 +110,52 @@ class BienType extends AbstractType
             ->add('charge',TextType::class,array(
                 'required' =>false
             ))
-            ->add('typeHabitat',ChoiceType::class,array(
-                'required' =>false
+            ->add('typeHabitat', ChoiceType::class,array(
+                'choices' => array(
+                    'Immeuble collectif' => 'Immeuble collectif',
+                    'Immeuble individuel' => 'Immeuble individuel',
+                ),
+
+                'required' => false,
+                'expanded' => true,
             ))
-            ->add('regimeJuridique',TextType::class,array(
-                'required' =>false
+
+            ->add('regimeJuridique', ChoiceType::class,array(
+                'choices' => array(
+                    'Copropriété' => 'Copropriété',
+                    'Mono propriété' => 'Mono propriété',
+                ),
+                'expanded' => true,
+                'required' => false
             ))
-            ->add('designationsDesParties',ChoiceType::class,array(
-                'required' =>false
-            ))
+            ->add('designationsDesParties', EntityType::class, [
+                'class'        => 'CSMainBundle:DesignationPartie',
+                'choice_label' => 'identifiant',
+                'expanded'     => true,
+                'multiple'     => true,
+            ])
             ->add('nomDuCentreImpot',TextType::class,array(
                 'required' =>false
             ))
             ->add('adresses',TextareaType::class,array(
                 'required' =>false
             ))
-            ->add('photo',FileType::class,array(
-                'required' =>false
+            ->add('photoFile', VichImageType::class, array(
+                'required' => false
             ))
             ->add('ville1',TextType::class,array(
                 'required' =>false
             ))
-            ->add('proprietaire',TextType::class,array(
-                'required' =>false
-            ))        ;
+            ->add('proprietaire',EntityType::class, array(
+                'class' => 'CSMainBundle:Proprietaire',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->orderBy('p.prenom', 'ASC');
+                },
+                'choice_label' => 'fullName',
+                'placeholder' => 'Choisisser un proprietaire',
+            ))
+        ;
     }
     
     /**

@@ -9,7 +9,10 @@
 namespace CS\MainBundle\Controller;
 
 
+use CS\MainBundle\Entity\Bien;
+use CS\MainBundle\Form\BienType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class BiensController extends Controller
 {
@@ -24,7 +27,9 @@ class BiensController extends Controller
 
 
     }
-    public function voirAction($id){
+    public function voirAction($id, Request $request){
+
+
         return $this->render('CSMainBundle:Biens:voir.html.twig');
 
     }
@@ -39,20 +44,63 @@ class BiensController extends Controller
 
     }
 
-    public function editAction($id){
-        return $this->render('CSMainBundle:Biens:edit.html.twig');
+    public function editAction($id, Request $request){
 
-}
+        $em = $this->getDoctrine()->getManager();
+        $bien = $em->getRepository('CSMainBundle:Bien')->find($id);
+
+        $form = $this->createForm(BienType::class, $bien);
+
+        if($form->handleRequest($request)->isValid()){
+            $bien->setUpdateAt(new \datetime);
+
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Le bien a été modifié.');
+
+            return $this->redirect($this->generateUrl('cs_main_Biens_list'));
+        }
+
+        return $this->render('CSMainBundle:Biens:edit.html.twig', [
+            'form' => $form->createView(),
+            'bien' => $bien
+        ]);
+
+    }
     public function supprimerAction($id){
         return $this->render('CSMainBundle:Biens:supprimer.html.twig');
 
-}
+    }
     public function inventairesAction($id){
         return $this->render('CSMainBundle:Biens:inventaires.html.twig');
 
     }
-    public function ajouterAction()
-    {   return $this->render('CSMainBundle:Biens:ajouter.html.twig');
+    public function ajouterAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $bien = new Bien();
+
+        $form = $this->createForm(BienType::class, $bien);
+
+        if($form->handleRequest($request)->isValid()){
+            $bien->setCreatedAt(new \datetime);
+            $bien->setUpdateAt(new \datetime);
+
+            $em->persist($bien);
+            $em->flush();
+
+            $bien->setCode('B'.date('Y').$bien->getId());
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Le bien a été enregistré.');
+
+            return $this->redirect($this->generateUrl('cs_main_Biens_list'));
+        }
+
+        return $this->render('CSMainBundle:Biens:ajouter.html.twig', [
+            'form' => $form->createView()
+        ]);
 
     }
 

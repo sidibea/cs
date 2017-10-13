@@ -13,6 +13,7 @@ use CS\MainBundle\Entity\Proprietaire;
 use CS\MainBundle\Form\ProprietaireType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProprietairesController extends Controller
 {
@@ -54,9 +55,28 @@ class ProprietairesController extends Controller
 
 
     }
-    public function editAction($id)
+
+    public function editAction($id, Request $request)
     {
-        return $this->render('CSMainBundle:Proprietaires:edit.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $proprietaire = $em->getRepository('CSMainBundle:Proprietaire')->find($id);
+
+        $form = $this->createForm(ProprietaireType::class, $proprietaire);
+
+        if($form->handleRequest($request)->isValid()){
+            $proprietaire->setUpdatedAt(new \datetime);
+
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', 'Le proprietaire a été modifié.');
+
+            return $this->redirect($this->generateUrl('cs_main_Proprietaires_list'));
+
+        }
+
+        return $this->render('CSMainBundle:Proprietaires:edit.html.twig', [
+            'form' => $form->createView(),
+            'proprietaire' => $proprietaire
+        ]);
     }
     public function bilanAction($id)
     {
@@ -66,9 +86,29 @@ class ProprietairesController extends Controller
     {
         return $this->render('CSMainBundle:Proprietaires:mandat.html.twig');
     }
-    public function supprimerAction($id)
+    public function supprimerAction($id, Request $request)
     {
-        return $this->render('CSMainBundle:Proprietaires:supprimer.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $proprietaire = $em->getRepository('CSMainBundle:Proprietaire')->find($id);
+
+        if (null === $proprietaire) {
+            throw new NotFoundHttpException("Le proprietaire avec l'id ".$id." n'existe pas.");
+        }
+        $em->remove($proprietaire);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('notice', 'Le proprietaire a été supprimé.');
+
+        return $this->redirect($this->generateUrl('cs_main_Proprietaires_list'));
+
+
+
+        /*// On boucle sur les catégories de l'annonce pour les supprimer
+        foreach ($proprietaire->getCategories() as $category) {
+        }*/
+
+
     }
     public function voirAction($id)
     {

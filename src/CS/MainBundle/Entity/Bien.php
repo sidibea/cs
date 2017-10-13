@@ -2,13 +2,20 @@
 
 namespace CS\MainBundle\Entity;
 
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Bien
  *
  * @ORM\Table(name="bien")
  * @ORM\Entity(repositoryClass="CS\MainBundle\Repository\BienRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 class Bien
 {
@@ -31,7 +38,7 @@ class Bien
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=255)
+     * @ORM\Column(name="code", type="string", nullable=true, length=255)
      */
     private $code;
 
@@ -183,9 +190,7 @@ class Bien
     private $regimeJuridique;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="designations_des_parties", type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity="CS\MainBundle\Entity\DesignationPartie", cascade={"persist", "remove"})
      */
     private $designationsDesParties;
 
@@ -199,7 +204,7 @@ class Bien
     /**
      * @var string
      *
-     * @ORM\Column(name="adresses", type="string", length=255, unique=true)
+     * @ORM\Column(name="adresses", type="string", length=255, nullable=true)
      */
     private $adresses;
 
@@ -216,6 +221,20 @@ class Bien
      * @ORM\Column(name="update_at", type="date")
      */
     private $updateAt;
+
+
+
+    /**
+     * @Assert\Image(
+     *     maxSize="3M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"},
+     *     maxWidth=1000,
+     *     maxHeight=1000
+     * )
+     * @Vich\UploadableField(mapping="bien_image", fileNameProperty="photo")
+     * @var [type]
+     */
+    private $photoFile;
 
     /**
      * @var string
@@ -240,6 +259,34 @@ class Bien
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhotoFile()
+    {
+        return $this->photoFile;
+    }
+
+
+
+    /**
+     * Sets the value of profile_picture_file.
+     *
+     * @return self
+     */
+    public function setPhotoFile(File $photoFile)
+    {
+        $this->photoFile = $photoFile;
+
+        // Only change the updated af if the file is really uploaded to avoid database updates.
+        // This is needed when the file should be set when loading the entity.
+        if ($this->photoFile instanceof UploadedFile) {
+            $this->setUpdateAt(new Carbon());
+        }
+
+        return $this;
     }
 
     /**

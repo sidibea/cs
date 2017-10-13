@@ -14,8 +14,10 @@ class ImmeublesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('adresse',TextType::class,array(
-        'required' => true))
+        $builder
+            ->add('adresse',TextType::class,array(
+                'required' => true
+            ))
             ->add('nom',TextType::class,array(
                 'required' =>false))
             ->add('biens', EntityType::class, [
