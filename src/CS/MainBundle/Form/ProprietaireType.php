@@ -63,7 +63,7 @@ class ProprietaireType extends AbstractType
                 'required' => true
             ))
             ->add('codePostal', TextType::class, array(
-                'required' => true
+                'required' => false
             ))
             ->add('telephone', TextType::class, array(
                 'required' => true

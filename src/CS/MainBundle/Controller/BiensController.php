@@ -13,6 +13,7 @@ use CS\MainBundle\Entity\Bien;
 use CS\MainBundle\Form\BienType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BiensController extends Controller
 {
@@ -67,8 +68,21 @@ class BiensController extends Controller
         ]);
 
     }
-    public function supprimerAction($id){
-        return $this->render('CSMainBundle:Biens:supprimer.html.twig');
+    public function supprimerAction(Request $request, $id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $bien = $em->getRepository('CSMainBundle:Bien')->find($id);
+
+        if (null === $bien) {
+            throw new NotFoundHttpException("Le bien avec l'id ".$id." n'existe pas.");
+        }
+        $em->remove($bien);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('notice', 'Le bien a été supprimé.');
+
+        return $this->redirect($this->generateUrl('cs_main_Biens_list'));
 
     }
     public function inventairesAction($id){
@@ -90,7 +104,7 @@ class BiensController extends Controller
             $em->persist($bien);
             $em->flush();
 
-            $bien->setCode('B'.date('Y').$bien->getId());
+            $bien->setCode('B'.date('y').$bien->getId());
             $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice', 'Le bien a été enregistré.');

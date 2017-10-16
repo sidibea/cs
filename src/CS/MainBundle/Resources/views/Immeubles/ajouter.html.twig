@@ -1,6 +1,6 @@
 {% extends 'layout/base-layout.html.twig' %}
-{% block title %} Ajouter Un Nouveau Immeuble {% endblock %}
-{% block page_title %}Ajouter Un Nouveau Immeuble {% endblock %}
+{% block title %} Ajouter Un  Immeuble {% endblock %}
+{% block page_title %}Ajouter Un  Immeuble {% endblock %}
 {% block page_content %}
 <div class="row">
     <div class="col-md-12">
@@ -11,8 +11,9 @@
             {{ form_errors(form) }}
             <div class="box-body">
                 <blockquote>
-                    <p>Veuillez remplir les champs ci-dessous pour ajouter un nouveau Immeuble.<br/>
-                        Certaines informartions sont réprises à titre indicatif dans la fiche produit et le flyer électronique
+                    <p>Cette page concerne seulement les propriétaires d'immeubles et permet de renseigner les tantièmes de chaque bien, afin de ventiler les dépenses communes.
+                        Vous devriez créer les biens dans la rubrique Biens avant de pouvoir remplir ce formulaire.
+
                 </blockquote>
                 <h4 class="form-box-header">Informations générales</h4>
 
@@ -41,6 +42,15 @@
                         {# Affichage des erreurs pour ce champ précis. #}
                         {{ form_errors(form.biens) }}
                         {{ form_widget(form.biens, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
+                    </div>
+                </div>
+                <div class="form-box-content">
+                    <div class="form-group control-group">
+                        {{ form_label(form.note, "Notes") }}
+
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.note) }}
+                        {{ form_widget(form.note, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
                     </div>
                 </div>
             </div>

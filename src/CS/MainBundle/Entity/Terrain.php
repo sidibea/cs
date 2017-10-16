@@ -31,6 +31,13 @@ class Terrain
     /**
      * @var string
      *
+     * @ORM\Column(name="code", type="string", length=255, nullable=true)
+     */
+    private $code;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="ville", type="string", length=255, nullable=true)
      */
     private $ville;
@@ -156,6 +163,24 @@ class Terrain
     {
         return $this->ville;
     }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+
 
     /**
      * Set adresse

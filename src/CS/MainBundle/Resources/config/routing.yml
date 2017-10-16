@@ -89,7 +89,7 @@ cs_main_Terrains_archive:
       defaults: { _controller:CSMainBundle:Terrains:archive}
 
 cs_main_Terrains_edit:
-      path:     /Terrains/{id}
+      path:     /Terrains/edit/{id}
       defaults: { _controller:CSMainBundle:Terrains:edit}
 
 cs_main_Terrains_supprimer:
@@ -113,9 +113,10 @@ cs_main_Immeubles_list:
       defaults: { _controller:CSMainBundle:Immeubles:list }
 
 cs_main_Immeubles_edit:
-      path:     /Immeubles/{id}
+      path:     /Immeubles/edit/{id}
       defaults: { _controller:CSMainBundle:Immeubles:edit }
-
+      requirements:
+          id: '\d+'
 cs_main_Immeubles_ajouter:
       path:     /Immeubles/nouveau
       defaults: { _controller:CSMainBundle:Immeubles:ajouter }
@@ -135,7 +136,9 @@ cs_main_Immeubles_finances:
 cs_main_Locataires_list:
       path:     /Locataires
       defaults: { _controller:CSMainBundle:Locataires:list }
-
+cs_main_Locataires_voir:
+      path:     /Locataires/voir/{id}
+      defaults: { _controller:CSMainBundle:Locataires:voir }
 cs_main_Locataires_edit:
       path:     /Locataires/edit/{id}
       defaults: { _controller:CSMainBundle:Locataires:edit }

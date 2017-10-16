@@ -2,6 +2,7 @@
 
 namespace CS\MainBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -17,11 +18,16 @@ class LocationsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('biens', EntityType::class, [
-            'class'        => 'CSMainBundle:Bien',
-            'choice_label' => 'identifiant',
-            'expanded'     => true,
-        ])
+        $builder
+            ->add('bien', EntityType::class, array(
+                'class' => 'CSMainBundle:Bien',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('b')
+                        ->orderBy('b.identifiant', 'ASC');
+                },
+                'choice_label' => 'fullName',
+                'placeholder' => 'Choisisser un proprietaire',
+            ))
             ->add('type',ChoiceType::class,array(
                 'choices' => array(
                     'Bail dhabitation vide' => 'Bail dhabitation vide',

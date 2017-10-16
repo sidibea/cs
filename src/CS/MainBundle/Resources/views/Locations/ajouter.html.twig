@@ -14,233 +14,44 @@
                     <p>Veuillez remplir les champs ci-dessous pour ajouter une nouvelle location.<br/>
                         Certaines informartions sont réprises à titre indicatif dans la fiche produit et le flyer électronique
                 </blockquote>
-                <h4 class="form-box-header">Informations générales</h4>
+                <div class="nav-tabs-custom ">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_1" data-toggle="tab"><b>INFORMATIONS GENERALES</b></a></li>
+                        <li><a href="#tab_2" data-toggle="tab"><b>INFORMATIONS COMPLEMENTAIRES</b></a></li>
 
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.biens, "Biens") }}
+                        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <h4 class="form-box-header">Bien loué</h4>
+                            <div class="form-box-content">
+                                <div class="form-group control-group">
+                                    {{ form_label(form.biens, "Biens") }}
 
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.biens) }}
-                        {{ form_widget(form.biens, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
+                                    {# Affichage des erreurs pour ce champ précis. #}
+                                    {{ form_errors(form.biens) }}
+                                    {{ form_widget(form.biens, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_2">
+                            <h4 class="form-box-header">Informations locatives</h4>
+
+
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_3">
+                            <h4 class="form-box-header">Photo</h4>
+
+                        </div>
+                        <!-- /.tab-pane -->
                     </div>
+                    <!-- /.tab-content -->
                 </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.type, " Type") }}
 
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.type) }}
-                        {{ form_widget(form.type, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.utilisation,"Utilisation") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.utilisation) }}
-                        {{ form_widget(form.utilisation, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.debutDuBail, " Debut du Bail ") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.debutDuBail) }}
-                        {{ form_widget(form.debutDuBail, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.finDuBail, "Fin du Bail") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.finDuBail) }}
-                        {{ form_widget(form.finDuBail, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.paiement, "Paiement") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.paiement) }}
-                        {{ form_widget(form.paiement, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.dateDeQuittancement, "Date de Quittancement") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.dateDeQuittancement) }}
-                        {{ form_widget(form.dateDeQuittancement, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.generationDePaiement, "Generation de Paiement") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.generationDePaiement) }}
-                        {{ form_widget(form.generationDePaiement, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.loyerHc, "LoyerHc") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.loyerHc) }}
-                        {{ form_widget(form.loyerHc, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.charges, "Charges") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.charges) }}
-                        {{ form_widget(form.charges, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.fraisDeRetard, "Frais de Retard") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.fraisDeRetard) }}
-                        {{ form_widget(form.fraisDeRetard, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.depotDeGaranti, "Depot de Garanti") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.depotDeGaranti) }}
-                        {{ form_widget(form.depotDeGaranti, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.autresDepots, "Autres Depots") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.autresDepots) }}
-                        {{ form_widget(form.autresDepots, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.locataire, "Locataires") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.locataire) }}
-                        {{ form_widget(form.locataire, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.montantTravauxProprietaire, "Montant Travaux Proprietaire") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.montantTravauxProprietaire) }}
-                        {{ form_widget(form.montantTravauxProprietaire, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.descriptionTravauxProprietaire, "Description Travaux Proprietaire") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.descriptionTravauxProprietaire) }}
-                        {{ form_widget(form.descriptionTravauxProprietaire, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.montantTravauxLocataire, "Montant Travaux Locataire") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.montantTravauxLocataire) }}
-                        {{ form_widget(form.montantTravauxLocataire, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.descriptionTravauxLocataire, "description Travaux Locataire") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.descriptionTravauxLocataire) }}
-                        {{ form_widget(form.descriptionTravauxLocataire, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.conditionParticuliere, "Condition Particuliere") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.conditionParticuliere) }}
-                        {{ form_widget(form.conditionParticuliere, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.commentaire, "Commentaires") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.commentaire) }}
-                        {{ form_widget(form.commentaire, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.textePourLaQuittance, "Texte pour la Quittance") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.textePourLaQuittance) }}
-                        {{ form_widget(form.textePourLaQuittance, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.textePourLavisEcheance, "Texte Pour l'avis D'echeance") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.textePourLavisEcheance) }}
-                        {{ form_widget(form.textePourLavisEcheance, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.loyerHcPremiereQuittance, "loyerHc Premiere Quittance") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.loyerHcPremiereQuittance) }}
-                        {{ form_widget(form.loyerHcPremiereQuittance, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.chargesPremiereQuittance, "charge Premiere Quittance") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.chargesPremiereQuittance) }}
-                        {{ form_widget(form.chargesPremiereQuittance, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
-                <div class="form-box-content">
-                    <div class="form-group control-group">
-                        {{ form_label(form.dateDeFinDuMois, "Date De Fin Du Mois") }}
-
-                        {# Affichage des erreurs pour ce champ précis. #}
-                        {{ form_errors(form.dateDeFinDuMois) }}
-                        {{ form_widget(form.dateDeFinDuMois, {'attr': {'class': 'form-control type', 'placeholder' : '' }}) }}
-                    </div>
-                </div>
             </div>
             <div class="box-footer">
                 <input type="submit" class="btn btn-success" value="Sauvegarder">

@@ -4,15 +4,17 @@ namespace CS\MainBundle\Form;
 
 //use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Ldap\Adapter\ExtLdap\Collection;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class LocataireType extends AbstractType
 {
@@ -50,12 +52,12 @@ class LocataireType extends AbstractType
             ->add('nom', TextType::class,array(
                 'required' =>false))
 
-            ->add('dateNaissance', DateType::class, array(
-                'label' => 'DoB',
-                'widget' => 'single_text',
-                'format' => 'dd/MM/yyyy',
-                'input'  => 'datetime',
-                'error_bubbling' => true
+            ->add('dateNaissance', BirthdayType::class, array(
+                'placeholder' => array(
+                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+                ),
+                'format' => 'dd-MM-yyyy',
+                'input' => 'string'
             ))
             ->add('email', TextType::class,array(
                 'required' =>false
@@ -72,9 +74,15 @@ class LocataireType extends AbstractType
             ->add('adresse',TextType::class,array(
                 'required' =>false
             ))
+            ->add('lieuDeNaissance',TextType::class,array(
+                'required' =>false
+            ))
 
             ->add('codePostal',TextType::class,array(
                 'required' =>false
+            ))
+            ->add('photoFile', VichImageType::class, array(
+                'required' => false
             ))
 
             ->add('telephone', TextType::class,array(
@@ -119,7 +127,7 @@ class LocataireType extends AbstractType
             ->add('telephoneProfessionel', TextType::class,array(
                 'required' =>false
             ))
-            ->add('notes',TextareaType::class,array(
+            ->add('notes', CKEditorType::class , array(
                 'required' =>false
             ))
             ->add('codeBanque', TextType::class,array(

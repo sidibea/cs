@@ -2,14 +2,21 @@
 
 namespace CS\MainBundle\Entity;
 
+use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Locataire
  *
  * @ORM\Table(name="locataire")
  * @ORM\Entity(repositoryClass="CS\MainBundle\Repository\LocataireRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 class Locataire
 {
@@ -25,7 +32,7 @@ class Locataire
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=255)
+     * @ORM\Column(name="code", type="string", length=255, nullable=true)
      */
     private $code;
 
@@ -58,11 +65,37 @@ class Locataire
     private $nom;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date_naissance", type="date", nullable=true)
+     * @ORM\Column(name="date_naissance", type="string", length=255, nullable=true)
      */
     private $dateNaissance;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="lieu_naissance", type="date", nullable=true)
+     */
+    private $lieuDeNaissance;
+
+    /**
+     * @Assert\Image(
+     *     maxSize="3M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"},
+     *     maxWidth=1000,
+     *     maxHeight=1000
+     * )
+     * @Vich\UploadableField(mapping="locataire_image", fileNameProperty="photo")
+     * @var [type]
+     */
+    private $photoFile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     */
+    private $photo;
 
     /**
      * @var string
@@ -186,7 +219,7 @@ class Locataire
     /**
      * @var string
      *
-     * @ORM\Column(name="notes", type="text")
+     * @ORM\Column(name="notes", type="text", nullable=true)
      */
     private $notes;
 
@@ -261,6 +294,85 @@ class Locataire
     public function __construct()
     {
         $this->garants = new ArrayCollection();
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getPhotoFile()
+    {
+        return $this->photoFile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getLieuDeNaissance()
+    {
+        return $this->lieuDeNaissance;
+    }
+
+    /**
+     * @param \DateTime $lieuDeNaissance
+     */
+    public function setLieuDeNaissance($lieuDeNaissance)
+    {
+        $this->lieuDeNaissance = $lieuDeNaissance;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param string $photo
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+    }
+
+
+
+
+
+    /**
+     * Sets the value of profile_picture_file.
+     *
+     * @return self
+     */
+    public function setPhotoFile(File $photoFile)
+    {
+        $this->photoFile = $photoFile;
+
+        // Only change the updated af if the file is really uploaded to avoid database updates.
+        // This is needed when the file should be set when loading the entity.
+        if ($this->photoFile instanceof UploadedFile) {
+            $this->setUpdatedAt(new Carbon());
+        }
+
+        return $this;
     }
 
     public function addGarant(Garant $garant)

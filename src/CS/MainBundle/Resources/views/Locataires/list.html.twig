@@ -15,17 +15,30 @@
                         <tr>
                             <th>Code</th>
                             <th>Nom</th>
-                            <th>Garant</th>
+                            <th>Contact</th>
                             <th>Action</th>
-                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for k, val in list %}
                         <td>{{ val.code }}</td>
                         <td>{{ val.nom }}</td>
-                        <td>{{ val.garant.nom }}</td>
-                        <td></td>
+                        <td>{{ val.telephone }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{{ path('cs_main_Biens_edit', {'id': val.id}) }}" class="btn btn-danger">Modifier</a>
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ path('cs_main_Locataires_voir', {'id': val.id}) }}">Voir les détails</a></li>
+                                    <li><a href="#">Bilan Financier</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{{ path('cs_main_Proprietaires_supprimer', {'id': val.id}) }}" onclick=" return confirm('Attention ! en supprimant ce bien, toutes les informations liées à ce bien seront supprimées ');">Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </td>
                         {% endfor %}
 
 
@@ -35,7 +48,7 @@
                         <tr>
                             <th>Code</th>
                             <th>Nom</th>
-                            <th>Garant</th>
+                            <th>Contact</th>
                             <th>Action</th>
 
                         </tr>

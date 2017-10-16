@@ -1,0 +1,93 @@
+{% extends 'layout/base-layout.html.twig' %}
+{% block title %} Fiche du locataire  {% endblock %}
+{% block page_title %}Fiche du locataire{% endblock %}
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <img class="profile-user-img img-responsive img-circle" src="{{ app.request.basePath }}  {{ vich_uploader_asset(locataire, 'photoFile') }}" alt="User profile picture">
+
+                    <h3 class="profile-username text-center">{{ locataire.prenom }} {{ locataire.nom }}</h3>
+
+                   {% if locataire.professionLocataire != null%} <p class="text-muted text-center">{{ locataire.professionLocataire  }}</p> {% endif %}
+
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Téléphone</b> <a class="pull-right">{{ locataire.telephone }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Portable</b> <a class="pull-right">{% if locataire.mobile != null %} {{ locataire.mobile }} {% else %} Pas d'information fournie {% endif %}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Email</b> <a href="mailto:{{ locataire.email }}" class="pull-right">{{ locataire.email }}</a>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-block"><b>Modifier</b></a>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+            <!-- About Me Box -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Informations locataire</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <strong><i class="fa fa-book margin-r-5"></i> Banque</strong>
+
+                    <p class="text-muted">
+                        <strong>Banque:</strong> {% if locataire.banque != null %} {{ locataire.banque  }} {% else %} Pas de banque {% endif %} <br>
+                        <strong>IBAN: </strong> {% if locataire.iban != null %} {{ locataire.iban }} {% else %} Pas de code IBAN {% endif %}<br>
+                        <strong>Swift/bic:</strong> {% if locataire.swift != null %} {{ locataire.swift }} {% else %} Pas de code SWIFT/BIC {% endif %}
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fa fa-map-marker margin-r-5"></i> Baux</strong>
+
+                    <p class="text-muted"><strong>Bien : </strong> </p>
+
+                    <hr>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#activity" data-toggle="tab">FINANCES</a></li>
+                    <li><a href="#timeline" data-toggle="tab">INTERVENTIONS</a></li>
+                    <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="timeline">
+                        <!-- The timeline -->
+                    </div>
+                    <!-- /.tab-pane -->
+
+                    <div class="tab-pane" id="settings">
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+
+{% endblock %}

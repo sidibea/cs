@@ -146,7 +146,7 @@ class BienType extends AbstractType
             ->add('ville1',TextType::class,array(
                 'required' =>false
             ))
-            ->add('proprietaire',EntityType::class, array(
+            ->add('proprietaire', EntityType::class, array(
                 'class' => 'CSMainBundle:Proprietaire',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')

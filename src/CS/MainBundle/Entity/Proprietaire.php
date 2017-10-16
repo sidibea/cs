@@ -88,8 +88,8 @@ class Proprietaire
      * @Assert\Image(
      *     maxSize="3M",
      *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"},
-     *     maxWidth=250,
-     *     maxHeight=250
+     *     maxWidth=1000,
+     *     maxHeight=1000
      * )
      * @Vich\UploadableField(mapping="photo_image", fileNameProperty="photo")
      * @var [type]

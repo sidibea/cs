@@ -41,7 +41,7 @@ class ProprietairesController extends Controller
             $em->persist($proprietaire);
             $em->flush();
 
-            $proprietaire->setCode('P'.date('Y').$proprietaire->getId());
+            $proprietaire->setCode('P'.date('y').$proprietaire->getId());
             $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice', 'Le proprietaire a été enregistré.');

@@ -2,6 +2,7 @@
 
 namespace CS\MainBundle\Form;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,10 +21,13 @@ class ImmeublesType extends AbstractType
             ))
             ->add('nom',TextType::class,array(
                 'required' =>false))
+            ->add('note',CKEditorType::class,array(
+                'required' =>false
+            ))
             ->add('biens', EntityType::class, [
                 'class'        => 'CSMainBundle:Bien',
                 'choice_label' => 'identifiant',
-                'expanded'     => true,
+                'expanded'     => false,
                  'multiple'     => true,
              ])        ;
     }
