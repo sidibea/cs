@@ -10,4 +10,22 @@ namespace CS\MainBundle\Repository;
  */
 class LocationsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findActive()
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('l')
+            ->where('l.active = :a')
+            ->setParameter('t.a', true)
+        ;
+
+        // On récupère la Query à partir du QueryBuilder
+        $query = $queryBuilder->getQuery();
+
+        // On récupère les résultats à partir de la Query
+        $results = $query->getResult();
+
+        return $results;
+
+    }
+
 }
