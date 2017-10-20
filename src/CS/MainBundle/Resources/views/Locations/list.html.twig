@@ -13,19 +13,52 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Adresse</th>
+                            <th>Code</th>
+                            <th>Bien</th>
                             <th>Locataires</th>
                             <th>LoyerHc</th>
+                            <th>Duree</th>
+                            <th>Etat</th>
+                            <th>Modeles</th>
                             <th>Action</th>
-                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for k,val in list %}
-                        <th> {{ val.adresse }}</th>
-                        <th>{{ val.locataires }}</th>
-                        <th>{{ val.loyerHc }}</th>
-                        <th>{{ val.action }}</th>
+                        <tr>
+                            <td> {{ val.code }}</td>
+                            <td>{{ val.biens.identifiant }} </td>
+                            <td><a href="{{ path('cs_main_Locataires_voir', {'id': val.locataire.id}) }}">{{ val.locataire.fullName }}</a></td>
+                            <td>{{ val.loyerHc }}</td>
+                            <td><b>Du {{ val.debutDuBail |date('d-m-Y') }} - Au {{ val.finDuBail |date('d-m-Y') }}</b></td>
+                            <td>
+                                {% if val.active == true %}
+                                    <span class="label pull-right bg-blue">active</span>
+                                {% else %}
+                                    <span class="label pull-right bg-red">inactive</span>
+                                {% endif %}
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{ path('cs_main_Locations_edit', {'id': val.id}) }}" class="btn btn-danger">Modifier</a>
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ path('cs_main_Locations_edit', {'id': val.id}) }}">Voir les détails</a></li>
+                                        <li><a href="#">Bilan Financier</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="{{ path('cs_main_Locations_supprimer', {'id': val.id}) }}" onclick=" return confirm('Attention ! en supprimant cette location, toutes les informations liées à ce bien seront supprimées ');">Supprimer</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+
+                        </tr>
+
                         {% endfor %}
 
 
@@ -33,11 +66,12 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>Adresse</th>
+                            <th>Code</th>
+                            <th>Bien</th>
                             <th>Locataires</th>
                             <th>LoyerHc</th>
+                            <th>Duree</th>
                             <th>Action</th>
-                            <th></th>
                         </tr>
                         </tfoot>
                     </table>

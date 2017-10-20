@@ -21,10 +21,12 @@ class LocatairesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $list = $em->getRepository('CSMainBundle:Locataire')->findAll();
+        $data = $em->getRepository('CSMainBundle:Bien')->findLoyer(3);
 
         return $this->render('CSMainBundle:Locataires:list.html.twig', [
             'list' => $list
         ]);
+
 
 
     }

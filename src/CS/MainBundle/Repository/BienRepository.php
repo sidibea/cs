@@ -10,4 +10,23 @@ namespace CS\MainBundle\Repository;
  */
 class BienRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findLoyer($id){
+
+        $queryBuilder = $this
+            ->createQueryBuilder('b')
+            ->select('b.loyerHc')
+            ->addSelect('b.charge')
+            ->where('b.id = :id')
+            ->setParameter('id', $id)
+            ;
+
+        // On récupère la Query à partir du QueryBuilder
+        $query = $queryBuilder->getQuery();
+
+        // On récupère les résultats à partir de la Query
+        $results = $query->getResult();
+        //dump($results[0]); exit;
+
+        return $results[0];
+    }
 }

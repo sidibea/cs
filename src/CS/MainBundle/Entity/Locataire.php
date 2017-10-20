@@ -244,6 +244,8 @@ class Locataire
      */
     private $numeroCompte;
 
+    
+
     /**
      * @var string
      *
@@ -294,6 +296,11 @@ class Locataire
     public function __construct()
     {
         $this->garants = new ArrayCollection();
+    }
+
+    public function getFullName(){
+
+        return $this->prenom." ".$this->nom;
     }
 
 
@@ -375,13 +382,13 @@ class Locataire
         return $this;
     }
 
-    public function addGarant(Garant $garant)
+    public function addGarant(Garants $garant)
     {  // Ici, on utilise l'ArrayCollection vraiment comme un tableau
         $this->garants[] = $garant;
 
         return $this;
     }
-    public function removeGarant(Garant $garant)
+    public function removeGarant(Garants $garant)
 
     {
         // Ici on utilise une méthode de l'ArrayCollection, pour supprimer  le bien en argument

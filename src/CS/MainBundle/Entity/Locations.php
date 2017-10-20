@@ -2,6 +2,7 @@
 
 namespace CS\MainBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,7 +24,7 @@ class Locations
 
     /**
      * Plusieurs biens peuvent appartenir à un propriétaire.
-     * @ORM\ManyToOne(targetEntity="Bien", cascade={"remove", "persist"} )
+     * @ORM\ManyToOne(targetEntity="Bien", cascade={"persist"})
      */
     private $biens;
 
@@ -42,15 +43,22 @@ class Locations
     private $utilisation;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=255, nullable=true)
+     */
+    private $code;
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="debut_du_bail", type="date")
+     * @ORM\Column(name="debut_du_bail", type="datetime", length=255)
      */
     private $debutDuBail;
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fin_du_bail", type="date")
+     * @ORM\Column(name="fin_du_bail", type="datetime", length=255)
      */
     private $finDuBail;
 
@@ -62,16 +70,16 @@ class Locations
     private $paiement;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="date_de_quittancement", type="datetime")
+     * @ORM\Column(name="date_de_quittancement", type="integer")
      */
     private $dateDeQuittancement;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="generation_de_paiement", type="text")
+     * @ORM\Column(name="generation_de_paiement", type="text", nullable=true)
      */
     private $generationDePaiement;
 
@@ -85,63 +93,61 @@ class Locations
     /**
      * @var string
      *
-     * @ORM\Column(name="charges", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="charges", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $charges;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="frais_de_retard", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="frais_de_retard", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $fraisDeRetard;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="depot_de_garanti", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="depot_de_garanti", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $depotDeGaranti;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="autres_depots", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="autres_depots", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $autresDepots;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="locataire", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Locataire", cascade={"persist"} )
      */
     private $locataire;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="montant_travaux_proprietaire", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="montant_travaux_proprietaire", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $montantTravauxProprietaire;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description_travaux_proprietaire", type="text")
+     * @ORM\Column(name="description_travaux_proprietaire", type="text", nullable=true)
      */
     private $descriptionTravauxProprietaire;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="montant_travaux_locataire", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="montant_travaux_locataire", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $montantTravauxLocataire;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description_travaux_locataire", type="text", nullable=true)
+     * @ORM\Column(name="description_travaux_locataire", type="text", nullable=true, nullable=true)
      */
     private $descriptionTravauxLocataire;
 
@@ -162,37 +168,58 @@ class Locations
     /**
      * @var string
      *
-     * @ORM\Column(name="texte_pour_la_quittance", type="text")
+     * @ORM\Column(name="texte_pour_la_quittance", type="text", nullable=true)
      */
     private $textePourLaQuittance;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="texte_pour_lavis_echeance", type="text")
+     * @ORM\Column(name="texte_pour_lavis_echeance", type="text", nullable=true)
      */
     private $textePourLavisEcheance;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="loyerHc_premiere_quittance", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="loyerHc_premiere_quittance", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $loyerHcPremiereQuittance;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="charges_premiere_quittance", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="charges_premiere_quittance", type="decimal", precision=10, scale=2, nullable=true)
      */
     private $chargesPremiereQuittance;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_de_fin_du_mois", type="datetime")
+     * @ORM\Column(name="date_de_fin_du_mois", type="datetime", length=255, nullable=true)
      */
     private $dateDeFinDuMois;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="date")
+     */
+    private $updatedAt;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
 
 
     /**
@@ -204,6 +231,60 @@ class Locations
     {
         return $this->id;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+
+
+
 
     /**
      * @return \DateTime
@@ -295,13 +376,7 @@ class Locations
         return $this->utilisation;
     }
 
-    /**
-     * Set debutDuBail
-     *
-     * @param \DateTime $debutDuBail
-     *
-     * @return Locations
-     */
+
     public function setDebutDuBail($debutDuBail)
     {
         $this->debutDuBail = $debutDuBail;
@@ -309,11 +384,7 @@ class Locations
         return $this;
     }
 
-    /**
-     * Get debutDuBail
-     *
-     * @return \DateTime
-     */
+
     public function getDebutDuBail()
     {
         return $this->debutDuBail;
@@ -414,6 +485,24 @@ class Locations
     {
         return $this->loyerHc;
     }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+
 
     /**
      * Set charges
@@ -775,13 +864,7 @@ class Locations
         return $this->chargesPremiereQuittance;
     }
 
-    /**
-     * Set dateDeFinDuMois
-     *
-     * @param \DateTime $dateDeFinDuMois
-     *
-     * @return Locations
-     */
+
     public function setDateDeFinDuMois($dateDeFinDuMois)
     {
         $this->dateDeFinDuMois = $dateDeFinDuMois;
@@ -789,11 +872,7 @@ class Locations
         return $this;
     }
 
-    /**
-     * Get dateDeFinDuMois
-     *
-     * @return \DateTime
-     */
+
     public function getDateDeFinDuMois()
     {
         return $this->dateDeFinDuMois;

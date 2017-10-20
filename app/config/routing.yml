@@ -21,3 +21,7 @@ _liip_imagine:
 
 avanzu_admin_profile:
     path: /profile
+
+jmose_command_scheduler:
+    resource: "@JMoseCommandSchedulerBundle/Resources/config/routing.yml"
+    prefix:   /

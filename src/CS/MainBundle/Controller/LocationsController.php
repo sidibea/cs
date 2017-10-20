@@ -12,6 +12,8 @@ namespace CS\MainBundle\Controller;
 use CS\MainBundle\Entity\Locations;
 use CS\MainBundle\Form\LocationsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LocationsController extends Controller
 {
@@ -26,11 +28,31 @@ class LocationsController extends Controller
 
     }
 
-    public function ajouterAction()
+    public function ajouterAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $locations=new Locations();
+        $locations = new Locations();
         $form = $this->createForm(LocationsType::class, $locations);
+
+        if($form->handleRequest($request)->isValid()){
+
+            $locations->setCreatedAt(new \datetime);
+            $locations->setUpdatedAt(new \datetime);
+            //$locations->setDebutDuBail()
+            $locations->setActive(true);
+
+
+            $em->persist($locations);
+            $em->flush();
+
+            $locations->setCode($locations->getLocataire()->getCode().$locations->getId());
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'La location a été enregistré.');
+
+            return $this->redirect($this->generateUrl('cs_main_Locations_list'));
+
+        }
 
 
         return $this->render('CSMainBundle:Locations:ajouter.html.twig', [
@@ -39,13 +61,49 @@ class LocationsController extends Controller
 
     }
 
-    public function editAction($id){
-        return $this->render('CSMainBundle:Locations:edit.html.twig');
+    public function editAction($id, Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $locations = $em->getRepository('CSMainBundle:Locations')->find($id);
+        $form = $this->createForm(LocationsType::class, $locations);
+
+        if($form->handleRequest($request)->isValid()){
+
+            $locations->setUpdatedAt(new \datetime);
+            //$locations->setDebutDuBail()
+
+
+            $em->flush();
+
+            $locations->setCode($locations->getLocataire()->getCode().$locations->getId());
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'La location a été enregistré.');
+
+            return $this->redirect($this->generateUrl('cs_main_Locations_list'));
+
+        }
+
+        return $this->render('CSMainBundle:Locations:edit.html.twig', [
+            'form' => $form->createView()
+        ]);
 
     }
 
-    public function supprimerAction($id){
-        return $this->render('CSMainBundle:Locations:supprimer.html.twig');
+    public function supprimerAction($id, Request $request){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $locations = $em->getRepository('CSMainBundle:Locations')->find($id);
+
+        if (null === $locations) {
+            throw new NotFoundHttpException("La location avec l'id ".$id." n'existe pas.");
+        }
+        $em->remove($locations);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('notice', 'La location a été supprimée.');
+
+        return $this->redirect($this->generateUrl('cs_main_Locations_list'));
 
     }
 

@@ -1,0 +1,80 @@
+{% extends 'layout/base-layout.html.twig' %}
+{% block title %} Finances  {% endblock %}
+{% block page_title %}Finances{% endblock %}
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row pull-right">
+                <a href="/landlord/#payments/newincome" class="btn btn-success addnew push">
+                    <i class="icon-plus"></i> Ajouter un revenu
+                </a>
+                <span class=" hidden-phone pull-right" style="width:5px;">&nbsp;</span>
+
+                <a href="/landlord/#payments/newexpense" class="btn btn-danger addnew push">
+                    <i class="icon-minus"></i> Ajouter une dépense
+                </a>
+
+            </div><br>
+            <div class="row">
+                <div class=" well push ">
+
+
+                    <div class="row-fluid">
+
+                        <div class="col-md-4">
+
+                            <p class="info-box">
+                                <span class="title">Revenus</span><span class="value green">150,000.00 </span>
+                            </p>
+
+                            <p class="info-box">
+                                <span class="title">Dépenses</span><span class="value red">-300,000.00 </span></p>
+                            <p class="info-box-result">
+                                <span aria-hidden="true" class="icon-chart pull-left"></span><span class="title">Résultat Net</span>
+                                <span class="value red">-150,000.00 </span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+
+                            <p class="info-box"><span class="title">Loyers encaissés <i data-original-title="C'est la somme globale des loyers encaissés pour la période. IMPORTANT! La date d'encaissement de chaque loyer est prise en compte pour le calcul." title="" data-toggle="tooltip" class="icon-info"></i></span><span class="value green">150,000.00   <span style="color:#333333; font-size: 60%;">sur 150000.00 FCFA</span></span></p>
+
+                            <p class="info-box"><span class="title">En attente / Impayés <i data-original-title="C'est un solde global qui prends en compte les trop perçus, impayés, paiements partiels et sommes prépayées" title="" data-toggle="tooltip" class="icon-info"></i></span><span class="value grey">0.00 </span> </p>
+                            <p>
+                                - Loyers hors charges
+                                <span style="color:#89AF07; font-size:15px; font-weight:700; line-height: 19px;">150000.00 FCFA</span> <i data-original-title="C'est la somme globale des loyers encaissés pour la période. IMPORTANT! La date d'encaissement de chaque loyer est prise en compte pour le calcul." title="" data-toggle="tooltip" class="icon-info" style="font-size: 0.8em;"></i>
+                                <br>
+                                - Charges
+                                <span style="color:#89AF07; font-size:15px; font-weight:700; line-height: 19px;">0.00 FCFA</span>
+
+                                <br>
+                                - TVA
+                                <span style="color:#89AF07; font-size:15px; font-weight:700; line-height: 19px;">0.00 FCFA</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascripts_inline %}
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+{% endblock %}

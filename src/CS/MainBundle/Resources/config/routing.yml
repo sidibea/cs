@@ -37,11 +37,13 @@ cs_main_Biens_ajouter:
 cs_main_Locations_list:
       path:     /Locations
       defaults: { _controller:CSMainBundle:Locations:list }
-
+cs_main_Locations_edit:
+      path:     /Locations/edit/{id}
+      defaults: { _controller:CSMainBundle:Locations:edit }
 
 
 cs_main_Locations_supprimer:
-      path:     /Locations/supprimer /{id}
+      path:     /Locations/supprimer/{id}
       defaults: { _controller:CSMainBundle:Locations:supprimer }
 
 cs_main_Locations_desactiver:
@@ -168,7 +170,11 @@ cs_main_Locataires_archiver:
       path:     /Locataires/archiver/{id}
       defaults: { _controller:CSMainBundle:Locataires:archiver }
 
-
-
+cs_main_ajax_bien_details:
+      path:     /ajax/bien
+      defaults: { _controller:CSMainBundle:Ajax:bien }
+cs_main_finances:
+      path:     /finances
+      defaults: { _controller:CSMainBundle:Finances:dash }
 
 

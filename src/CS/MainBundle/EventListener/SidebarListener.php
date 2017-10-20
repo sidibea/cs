@@ -31,8 +31,9 @@ class SidebarListener
             $dash = new MenuItemModel('Bureau', 'Bureau', 'cs_main_homepage', $earg, 'fa fa-dashboard'),
             $Proprietaires = new MenuItemModel('proprietaire', 'Proprietaires', 'cs_main_Proprietaires_list', $earg, 'fa fa-users'),
             $biens = new MenuItemModel('biens', 'Biens', '', $earg, 'fa fa-institution'),
-            $locataires = new MenuItemModel('Locataires', 'Locataires', 'cs_main_Locataires_list', $earg,  'fa fa-key'),
-            $locations = new MenuItemModel('locations', 'Locations', '', $earg, 'fa fa-institution'),
+            $locataires = new MenuItemModel('Locataires', 'Locataires', 'cs_main_Locataires_list', $earg,  'fa fa-male'),
+            $locations = new MenuItemModel('locations', 'Locations', '', $earg, 'fa fa-key'),
+            $terrains = new MenuItemModel('terrains', 'Vente de terrains', 'cs_main_homepage', $earg, 'fa fa-arrows'),
             $finances = new MenuItemModel('Finances', 'Finances', '', $earg, 'fa fa-money'),
             $carnet = new MenuItemModel('Carnet', 'Carnet', 'cs_main_homepage', $earg, 'fa fa-book'),
 
@@ -45,7 +46,7 @@ class SidebarListener
         $locations->addChild(new MenuItemModel('Locations', 'Locations', 'cs_main_Locations_list', $earg));
         $biens->addChild(new MenuItemModel('Terrains', 'Terrains', 'cs_main_Terrains_list', $earg));
 
-        $finances->addChild(new MenuItemModel('Finances', 'Finances', 'cs_main_homepage', $earg))
+        $finances->addChild(new MenuItemModel('Finances', 'Finances', 'cs_main_finances', $earg))
                  ->addChild(new MenuItemModel('Bilan', 'Bilan Financier', 'cs_main_homepage', $earg))
                  ->addChild(new MenuItemModel('Credits', 'Mes credits', 'cs_main_homepage', $earg));
 

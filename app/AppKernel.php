@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(), //breadcrumbs
             new Avanzu\AdminThemeBundle\AvanzuAdminThemeBundle(),
             new CS\MainBundle\CSMainBundle(),
+            new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
